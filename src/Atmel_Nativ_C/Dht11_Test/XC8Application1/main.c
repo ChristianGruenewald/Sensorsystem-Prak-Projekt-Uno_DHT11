@@ -47,17 +47,27 @@
 #include <util/delay.h>
 #include <string.h>
 
+//Global Vars:
 int8_t humidity_high=0;
 int8_t humidity_low=0;
 int8_t temperature_high=0;
 int8_t temperature_low=0;
 
 
-char humi_first=1;
-char humi_last=1;
-char temp_first=1;
-char temp_last=1;
+unsigned char humi_high_first=1;
+unsigned char humi_high_last=1;
+unsigned char humi_low_first=1;
+unsigned char humi_low_last=1;
+
+
+char temp_high_first=1;
+char temp_high_last=1;
+char temp_low_first=1;
+char temp_low_last=1;
+
 int8_t Bitmask=0b00110000; //or 48, look in ASCII binary table
+
+unsigned char error_String[]={"reading error!"};
 
 void SetupUART()
 {
@@ -160,23 +170,53 @@ int8_t Read_DHT11()
 	
 }
 
+void send_string(char s[])
+{
+	int i =0;
+	
+	while (s[i] != 0x00)
+	{
+		UART_Transmit(s[i]);
+		i++;
+	}
+}
+
 
 void ConvertToChar()
 {
 	//8 bit decomposition e.g. humidity=37 (8 Bit, dec) 
-	humi_last=humidity_high%10; //37%10= 7 and save as char
+	humi_high_last=humidity_high%10; //37%10= 7 and save as char
 	humidity_high=humidity_high/10; //37/10=3 
-	humi_first=humidity_high%10; //3%10=3
+	humi_high_first=humidity_high%10; //3%10=3
+	//now for decimal points:
+	humi_low_last=humidity_low%10; //37%10= 7 and save as char
+	humidity_low=humidity_low/10; //37/10=3
+	humi_low_first=humidity_low%10; //3%10=3
+	
 	//same for temperature:
-	temp_last=temperature_high%10;
+	temp_high_last=temperature_high%10;
 	temperature_high=temperature_high/10;
-	temp_first=temperature_high%10;
+	temp_high_first=temperature_high%10;
+	//now for decimal points:
+	temp_low_last=temperature_low%10;
+	temperature_low=temperature_low/10;
+	temp_low_first=temperature_low%10;
 	
 	//convert from dec to ASCII
-	humi_last|=Bitmask;
-	humi_first|=Bitmask;
-	temp_first|=Bitmask;
-	temp_last|=Bitmask;
+	//for humi:
+	//´high
+	humi_high_last|=Bitmask;
+	humi_high_first|=Bitmask;
+	//low:
+	humi_low_last|=Bitmask;
+	humi_low_first|=Bitmask;
+	//for temp:
+	//high
+	temp_high_first|=Bitmask;
+	temp_high_last|=Bitmask;
+	//low
+	temp_low_last|=Bitmask;
+	temp_low_first|=Bitmask;
 }
 
 
@@ -185,26 +225,31 @@ int main(void)
 	SetupUART();
     while(1) 
     {
+		unsigned char cmd=UART_Read();
+		switch(cmd)
+		{
+			case 'U':
+			case  'u':
 			if(Read_DHT11()!=-1)
 			{
 				ConvertToChar();
-				UART_Transmit(humi_first);
-				UART_Transmit(humi_last);
+				unsigned char humi[3]={humi_high_first, humi_high_last,'.',humi_low_first,humi_low_last};
+				unsigned char temp[4]={temp_high_first,temp_high_last,'.',temp_low_first,temp_low_last};
+				send_string(humi);
 				UART_Transmit(';');
-				UART_Transmit(temp_first);
-				UART_Transmit(temp_last);
+				send_string(temp);
 				UART_Transmit('\n');
 				UART_Transmit('\r');
 			}
 			else
 			{
-				UART_Transmit('E');
-				UART_Transmit('8');
+				send_string(error_String);
 				UART_Transmit('\n');
-				UART_Transmit('\r');			
+				UART_Transmit('\r');		
 			}
-			
-			_delay_ms(2000);
-		
+			break;
+			default:
+			break;
+		}
     }
 }

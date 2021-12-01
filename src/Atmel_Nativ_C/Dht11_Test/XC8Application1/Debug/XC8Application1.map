@@ -12,8 +12,6 @@ Discarded input sections
  .text          0x0000000000000000        0x0 main.o
  .data          0x0000000000000000        0x0 main.o
  .bss           0x0000000000000000        0x0 main.o
- .text.UART_Read
-                0x0000000000000000        0xe main.o
  .text          0x0000000000000000        0x0 c:/program files/microchip/xc8/v2.31/avr/bin/../lib/gcc/avr/5.4.0/avr5/memx-const\libgcc.a(_exit.o)
  .data          0x0000000000000000        0x0 c:/program files/microchip/xc8/v2.31/avr/bin/../lib/gcc/avr/5.4.0/avr5/memx-const\libgcc.a(_exit.o)
  .bss           0x0000000000000000        0x0 c:/program files/microchip/xc8/v2.31/avr/bin/../lib/gcc/avr/5.4.0/avr5/memx-const\libgcc.a(_exit.o)
@@ -183,7 +181,6 @@ END GROUP
  *(.dinit)
  .dinit         0x0000000000000068        0xc data_init
                 0x0000000000000074                . = ALIGN (0x2)
- *fill*         0x0000000000000074        0x0 
                 0x0000000000000074                __trampolines_start = .
  *(.trampolines)
  .trampolines   0x0000000000000074        0x0 linker stubs
@@ -336,41 +333,41 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x0000000000000000       0x48
+.debug_aranges  0x0000000000000000       0x50
  *(.debug_aranges)
  .debug_aranges
-                0x0000000000000000       0x48 main.o
+                0x0000000000000000       0x50 main.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000      0xdf1
+.debug_info     0x0000000000000000      0xf23
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x0000000000000000      0x5f4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/xc8/avr/lib/avr5/memx-const/crtatmega328p.o
- .debug_info    0x00000000000005f4      0x7fd main.o
+ .debug_info    0x00000000000005f4      0x92f main.o
 
-.debug_abbrev   0x0000000000000000      0x7a3
+.debug_abbrev   0x0000000000000000      0x7c5
  *(.debug_abbrev)
  .debug_abbrev  0x0000000000000000      0x5a2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/xc8/avr/lib/avr5/memx-const/crtatmega328p.o
- .debug_abbrev  0x00000000000005a2      0x201 main.o
+ .debug_abbrev  0x00000000000005a2      0x223 main.o
 
-.debug_line     0x0000000000000000      0x46f
+.debug_line     0x0000000000000000      0x4df
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x0000000000000000      0x137 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/xc8/avr/lib/avr5/memx-const/crtatmega328p.o
- .debug_line    0x0000000000000137      0x338 main.o
+ .debug_line    0x0000000000000137      0x3a8 main.o
 
-.debug_frame    0x0000000000000000       0x84
+.debug_frame    0x0000000000000000       0xb8
  *(.debug_frame)
- .debug_frame   0x0000000000000000       0x84 main.o
+ .debug_frame   0x0000000000000000       0xb8 main.o
 
 .debug_str      0x0000000000000000      0x22e
  *(.debug_str)
  .debug_str     0x0000000000000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/xc8/avr/lib/avr5/memx-const/crtatmega328p.o
  .debug_str     0x0000000000000208       0x26 main.o
 
-.debug_loc      0x0000000000000000      0x330
+.debug_loc      0x0000000000000000      0x42d
  *(.debug_loc)
- .debug_loc     0x0000000000000000      0x330 main.o
+ .debug_loc     0x0000000000000000      0x42d main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -390,9 +387,9 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x0000000000000000       0x58
+.debug_ranges   0x0000000000000000       0x60
  *(.debug_ranges)
- .debug_ranges  0x0000000000000000       0x58 main.o
+ .debug_ranges  0x0000000000000000       0x60 main.o
 
 .debug_macro
  *(.debug_macro)
@@ -406,28 +403,28 @@ LOAD data_init
                 0x0000000000000000       0x40 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/xc8/avr/lib/avr5/memx-const/crtatmega328p.o
 
 .bss.temperature_low
-                0x0000000000800105        0x1
+                0x0000000000800118        0x1
  .bss.temperature_low
-                0x0000000000800105        0x1 main.o
-                0x0000000000800105                temperature_low
+                0x0000000000800118        0x1 main.o
+                0x0000000000800118                temperature_low
 
 .bss.temperature_high
-                0x0000000000800106        0x1
+                0x0000000000800119        0x1
  .bss.temperature_high
-                0x0000000000800106        0x1 main.o
-                0x0000000000800106                temperature_high
+                0x0000000000800119        0x1 main.o
+                0x0000000000800119                temperature_high
 
 .bss.humidity_low
-                0x0000000000800107        0x1
+                0x000000000080011a        0x1
  .bss.humidity_low
-                0x0000000000800107        0x1 main.o
-                0x0000000000800107                humidity_low
+                0x000000000080011a        0x1 main.o
+                0x000000000080011a                humidity_low
 
 .bss.humidity_high
-                0x0000000000800108        0x1
+                0x000000000080011b        0x1
  .bss.humidity_high
-                0x0000000000800108        0x1 main.o
-                0x0000000000800108                humidity_high
+                0x000000000080011b        0x1 main.o
+                0x000000000080011b                humidity_high
 
 .text.Read_DHT11
                 0x00000000000000c8      0x15a
@@ -436,80 +433,122 @@ LOAD data_init
                 0x00000000000000c8                Read_DHT11
 
 .text.ConvertToChar
-                0x0000000000000222       0xae
+                0x0000000000000222      0x158
  .text.ConvertToChar
-                0x0000000000000222       0xae main.o
+                0x0000000000000222      0x158 main.o
                 0x0000000000000222                ConvertToChar
 
-.text.main      0x00000000000002d0       0x70
- .text.main     0x00000000000002d0       0x70 main.o
-                0x00000000000002d0                main
+.text.main      0x000000000000037a       0x8e
+ .text.main     0x000000000000037a       0x8e main.o
+                0x000000000000037a                main
+
+.text.send_string
+                0x0000000000000408       0x2c
+ .text.send_string
+                0x0000000000000408       0x2c main.o
+                0x0000000000000408                send_string
 
 .text.SetupUART
-                0x0000000000000340       0x18
+                0x0000000000000434       0x18
  .text.SetupUART
-                0x0000000000000340       0x18 main.o
-                0x0000000000000340                SetupUART
+                0x0000000000000434       0x18 main.o
+                0x0000000000000434                SetupUART
 
 .text.UART_Transmit
-                0x0000000000000358        0xe
+                0x000000000000044c        0xe
  .text.UART_Transmit
-                0x0000000000000358        0xe main.o
-                0x0000000000000358                UART_Transmit
+                0x000000000000044c        0xe main.o
+                0x000000000000044c                UART_Transmit
 
-.text           0x0000000000000366        0x4
- .text          0x0000000000000366        0x4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/xc8/avr/lib/avr5/memx-const/crtatmega328p.o
-                0x0000000000000366                __vector_22
-                0x0000000000000366                __vector_1
-                0x0000000000000366                __vector_24
-                0x0000000000000366                __vector_12
-                0x0000000000000366                __bad_interrupt
-                0x0000000000000366                __vector_6
-                0x0000000000000366                __vector_3
-                0x0000000000000366                __vector_23
-                0x0000000000000366                __vector_25
-                0x0000000000000366                __vector_11
-                0x0000000000000366                __vector_13
-                0x0000000000000366                __vector_17
-                0x0000000000000366                __vector_19
-                0x0000000000000366                __vector_7
-                0x0000000000000366                __vector_5
-                0x0000000000000366                __vector_4
-                0x0000000000000366                __vector_9
-                0x0000000000000366                __vector_2
-                0x0000000000000366                __vector_21
-                0x0000000000000366                __vector_15
-                0x0000000000000366                __vector_8
-                0x0000000000000366                __vector_14
-                0x0000000000000366                __vector_10
-                0x0000000000000366                __vector_16
-                0x0000000000000366                __vector_18
-                0x0000000000000366                __vector_20
+.text.UART_Read
+                0x000000000000045a        0xe
+ .text.UART_Read
+                0x000000000000045a        0xe main.o
+                0x000000000000045a                UART_Read
 
-.data.Bitmask   0x0000000000800100        0x1 load address 0x000000000000036a
- .data.Bitmask  0x0000000000800100        0x1 main.o
-                0x0000000000800100                Bitmask
+.text           0x0000000000000468        0x4
+ .text          0x0000000000000468        0x4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/xc8/avr/lib/avr5/memx-const/crtatmega328p.o
+                0x0000000000000468                __vector_22
+                0x0000000000000468                __vector_1
+                0x0000000000000468                __vector_24
+                0x0000000000000468                __vector_12
+                0x0000000000000468                __bad_interrupt
+                0x0000000000000468                __vector_6
+                0x0000000000000468                __vector_3
+                0x0000000000000468                __vector_23
+                0x0000000000000468                __vector_25
+                0x0000000000000468                __vector_11
+                0x0000000000000468                __vector_13
+                0x0000000000000468                __vector_17
+                0x0000000000000468                __vector_19
+                0x0000000000000468                __vector_7
+                0x0000000000000468                __vector_5
+                0x0000000000000468                __vector_4
+                0x0000000000000468                __vector_9
+                0x0000000000000468                __vector_2
+                0x0000000000000468                __vector_21
+                0x0000000000000468                __vector_15
+                0x0000000000000468                __vector_8
+                0x0000000000000468                __vector_14
+                0x0000000000000468                __vector_10
+                0x0000000000000468                __vector_16
+                0x0000000000000468                __vector_18
+                0x0000000000000468                __vector_20
 
-.data.temp_last
-                0x0000000000800101        0x1 load address 0x000000000000036b
- .data.temp_last
-                0x0000000000800101        0x1 main.o
-                0x0000000000800101                temp_last
+.data.error_String
+                0x0000000000800100        0xf load address 0x000000000000046c
+ .data.error_String
+                0x0000000000800100        0xf main.o
+                0x0000000000800100                error_String
 
-.data.temp_first
-                0x0000000000800102        0x1 load address 0x000000000000036c
- .data.temp_first
-                0x0000000000800102        0x1 main.o
-                0x0000000000800102                temp_first
+.data.Bitmask   0x000000000080010f        0x1 load address 0x000000000000047b
+ .data.Bitmask  0x000000000080010f        0x1 main.o
+                0x000000000080010f                Bitmask
 
-.data.humi_last
-                0x0000000000800103        0x1 load address 0x000000000000036d
- .data.humi_last
-                0x0000000000800103        0x1 main.o
-                0x0000000000800103                humi_last
+.data.temp_low_last
+                0x0000000000800110        0x1 load address 0x000000000000047c
+ .data.temp_low_last
+                0x0000000000800110        0x1 main.o
+                0x0000000000800110                temp_low_last
 
-.data.humi_first
-                0x0000000000800104        0x1 load address 0x000000000000036e
- .data.humi_first
-                0x0000000000800104        0x1 main.o
-                0x0000000000800104                humi_first
+.data.temp_low_first
+                0x0000000000800111        0x1 load address 0x000000000000047d
+ .data.temp_low_first
+                0x0000000000800111        0x1 main.o
+                0x0000000000800111                temp_low_first
+
+.data.temp_high_last
+                0x0000000000800112        0x1 load address 0x000000000000047e
+ .data.temp_high_last
+                0x0000000000800112        0x1 main.o
+                0x0000000000800112                temp_high_last
+
+.data.temp_high_first
+                0x0000000000800113        0x1 load address 0x000000000000047f
+ .data.temp_high_first
+                0x0000000000800113        0x1 main.o
+                0x0000000000800113                temp_high_first
+
+.data.humi_low_last
+                0x0000000000800114        0x1 load address 0x0000000000000480
+ .data.humi_low_last
+                0x0000000000800114        0x1 main.o
+                0x0000000000800114                humi_low_last
+
+.data.humi_low_first
+                0x0000000000800115        0x1 load address 0x0000000000000481
+ .data.humi_low_first
+                0x0000000000800115        0x1 main.o
+                0x0000000000800115                humi_low_first
+
+.data.humi_high_last
+                0x0000000000800116        0x1 load address 0x0000000000000482
+ .data.humi_high_last
+                0x0000000000800116        0x1 main.o
+                0x0000000000800116                humi_high_last
+
+.data.humi_high_first
+                0x0000000000800117        0x1 load address 0x0000000000000483
+ .data.humi_high_first
+                0x0000000000800117        0x1 main.o
+                0x0000000000800117                humi_high_first
