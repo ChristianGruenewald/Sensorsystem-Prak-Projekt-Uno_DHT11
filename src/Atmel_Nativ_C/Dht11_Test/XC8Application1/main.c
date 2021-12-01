@@ -53,6 +53,12 @@ int8_t temperature_high=0;
 int8_t temperature_low=0;
 
 
+char humi_first=1;
+char humi_last=1;
+char temp_first=1;
+char temp_last=1;
+int8_t Bitmask=0b00110000; //or 48, look in ASCII binary table
+
 void SetupUART()
 {
 	// Set Baud Rate
@@ -155,6 +161,24 @@ int8_t Read_DHT11()
 }
 
 
+void ConvertToChar()
+{
+	//8 bit decomposition e.g. humidity=37 (8 Bit, dec) 
+	humi_last=humidity_high%10; //37%10= 7 and save as char
+	humidity_high=humidity_high/10; //37/10=3 
+	humi_first=humidity_high%10; //3%10=3
+	//same for temperature:
+	temp_last=temperature_high%10;
+	temperature_high=temperature_high/10;
+	temp_first=temperature_high%10;
+	
+	//convert from dec to ASCII
+	humi_last|=Bitmask;
+	humi_first|=Bitmask;
+	temp_first|=Bitmask;
+	temp_last|=Bitmask;
+}
+
 
 int main(void)
 { 
@@ -163,14 +187,13 @@ int main(void)
     {
 			if(Read_DHT11()!=-1)
 			{
-				UART_Transmit(temperature_high);
-				UART_Transmit(temperature_low);
+				ConvertToChar();
+				UART_Transmit(humi_first);
+				UART_Transmit(humi_last);
 				UART_Transmit(';');
-				UART_Transmit(humidity_high);
-				UART_Transmit(humidity_low);
-				//UART_Transmit(';');
-				//UART_Transmit(humidity);
-				//UART_Transmit('\n');
+				UART_Transmit(temp_first);
+				UART_Transmit(temp_last);
+				UART_Transmit('\n');
 				UART_Transmit('\r');
 			}
 			else
