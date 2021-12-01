@@ -15,4 +15,6 @@
 - Atmega 328p : https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf 
 - Setup Atmel Studio to upload Code without Atmel Programmer via ICSP: https://www.youtube.com/watch?v=zEbSQaQJvHI 
 ./Projectfolder/src/Atmel-Nativ_C
+- ! Neu: USART Protkoll wurde entwickelt: 
+Wenn ein 'u' oder ein 'U' als ASCII Zeichen gesendet wird, antwortet der Atmega328p mit den ausgelesenen Daten des DHT11, auch als ASCII mit Nachkommastellen. 
 
