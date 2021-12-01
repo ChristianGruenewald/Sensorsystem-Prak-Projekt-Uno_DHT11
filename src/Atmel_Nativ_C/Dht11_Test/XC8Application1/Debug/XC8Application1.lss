@@ -3,78 +3,82 @@ XC8Application1.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  0000032a  2**0
+  0 .data         00000000  00800100  00800100  00000320  2**0
                   ALLOC, LOAD, DATA
   1 .text         000000c2  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      0000002f  00000000  00000000  0000032a  2**0
+  2 .comment      0000002f  00000000  00000000  00000320  2**0
                   CONTENTS, READONLY
-  3 .debug_aranges 00000038  00000000  00000000  00000359  2**0
+  3 .debug_aranges 00000040  00000000  00000000  0000034f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_info   00000d12  00000000  00000000  00000391  2**0
+  4 .debug_info   00000d36  00000000  00000000  0000038f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_abbrev 000007a5  00000000  00000000  000010a3  2**0
+  5 .debug_abbrev 000007a3  00000000  00000000  000010c5  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_line   000003e2  00000000  00000000  00001848  2**0
+  6 .debug_line   00000416  00000000  00000000  00001868  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_frame  0000006c  00000000  00000000  00001c2c  2**2
+  7 .debug_frame  00000074  00000000  00000000  00001c80  2**2
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_str    0000022e  00000000  00000000  00001c98  2**0
+  8 .debug_str    0000022e  00000000  00000000  00001cf4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_loc    000003ee  00000000  00000000  00001ec6  2**0
+  9 .debug_loc    00000330  00000000  00000000  00001f22  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 00000048  00000000  00000000  000022b4  2**0
+ 10 .debug_ranges 00000050  00000000  00000000  00002252  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .text         00000004  000002b2  000002b2  00000326  2**1
+ 11 .text         00000004  000002a8  000002a8  0000031c  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 12 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000022fc  2**2
+ 12 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000022a4  2**2
                   CONTENTS, READONLY, DEBUGGING
- 13 .text.SetupUART 00000018  0000028c  0000028c  00000300  2**1
+ 13 .text.SetupUART 00000018  00000282  00000282  000002f6  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 14 .text.USART_Transmit 0000000e  000002a4  000002a4  00000318  2**1
+ 14 .text.UART_Transmit 0000000e  0000029a  0000029a  0000030e  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 15 .text.GetValues 0000018a  000000c2  000000c2  00000136  2**1
+ 15 .text.Read_DHT11 0000015a  000000c2  000000c2  00000136  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 16 .text.main    00000040  0000024c  0000024c  000002c0  2**1
+ 16 .text.main    00000066  0000021c  0000021c  00000290  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 17 .bss.humidity_int 00000001  00800100  00800100  0000032a  2**0
+ 17 .bss.temperature_low 00000001  00800100  00800100  00000320  2**0
                   ALLOC
- 18 .bss.temperature_int 00000001  00800101  00800101  0000032a  2**0
+ 18 .bss.temperature_high 00000001  00800101  00800101  00000320  2**0
+                  ALLOC
+ 19 .bss.humidity_low 00000001  00800102  00800102  00000320  2**0
+                  ALLOC
+ 20 .bss.humidity_high 00000001  00800103  00800103  00000320  2**0
                   ALLOC
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	0c 94 37 00 	jmp	0x6e	; 0x6e <__ctors_end>
-   4:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-   8:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-   c:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  10:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  14:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  18:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  1c:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  20:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  24:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  28:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  2c:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  30:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  34:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  38:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  3c:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  40:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  44:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  48:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  4c:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  50:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  54:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  58:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  5c:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  60:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
-  64:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__bad_interrupt>
+   4:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+   8:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+   c:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  10:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  14:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  18:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  1c:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  20:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  24:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  28:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  2c:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  30:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  34:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  38:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  3c:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  40:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  44:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  48:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  4c:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  50:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  54:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  58:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  5c:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  60:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
+  64:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__bad_interrupt>
 
 00000068 <.dinit>:
   68:	01 00       	.word	0x0001	; ????
-  6a:	01 02       	muls	r16, r17
+  6a:	01 04       	cpc	r0, r1
   6c:	80 00       	.word	0x0080	; ????
 
 0000006e <__ctors_end>:
@@ -118,7 +122,7 @@ Disassembly of section .text:
   b0:	ed 36       	cpi	r30, 0x6D	; 109
   b2:	f4 07       	cpc	r31, r20
   b4:	31 f7       	brne	.-52     	; 0x82 <__do_copy_data+0x8>
-  b6:	0e 94 26 01 	call	0x24c	; 0x24c <main>
+  b6:	0e 94 0e 01 	call	0x21c	; 0x21c <main>
   ba:	0c 94 5f 00 	jmp	0xbe	; 0xbe <_exit>
 
 000000be <_exit>:
@@ -129,460 +133,434 @@ Disassembly of section .text:
 
 Disassembly of section .text:
 
-000002b2 <__bad_interrupt>:
- 2b2:	0c 94 00 00 	jmp	0	; 0x0 <__TEXT_REGION_ORIGIN__>
+000002a8 <__bad_interrupt>:
+ 2a8:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 Disassembly of section .text.SetupUART:
 
-0000028c <SetupUART>:
-int8_t humidity_int = 0;
+00000282 <SetupUART>:
+
 
 void SetupUART()
 {
 	// Set Baud Rate
 	UBRR0H = BAUD_PRESCALER >> 8;
- 28c:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
+ 282:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
 	UBRR0L = BAUD_PRESCALER;
- 290:	87 e6       	ldi	r24, 0x67	; 103
- 292:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
+ 286:	87 e6       	ldi	r24, 0x67	; 103
+ 288:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
 	
 	// Set Frame Format
 	UCSR0C = ASYNCHRONOUS | PARITY_MODE | STOP_BIT | DATA_BIT;
- 296:	86 e0       	ldi	r24, 0x06	; 6
- 298:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
+ 28c:	86 e0       	ldi	r24, 0x06	; 6
+ 28e:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
 	
 	// Enable Receiver and Transmitter
 	UCSR0B = (1<<RXEN0) | (1<<TXEN0);
- 29c:	88 e1       	ldi	r24, 0x18	; 24
- 29e:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7f80c1>
- 2a2:	08 95       	ret
+ 292:	88 e1       	ldi	r24, 0x18	; 24
+ 294:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7f80c1>
+ 298:	08 95       	ret
 
-Disassembly of section .text.USART_Transmit:
+Disassembly of section .text.UART_Transmit:
 
-000002a4 <USART_Transmit>:
+0000029a <UART_Transmit>:
 }
 
-void USART_Transmit( unsigned char data )
+void UART_Transmit( int8_t data )
 {
 	while (( UCSR0A & (1<<UDRE0)) == 0) {}; // Do nothing until UDR is ready
- 2a4:	90 91 c0 00 	lds	r25, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
- 2a8:	95 ff       	sbrs	r25, 5
- 2aa:	fc cf       	rjmp	.-8      	; 0x2a4 <USART_Transmit>
+ 29a:	90 91 c0 00 	lds	r25, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+ 29e:	95 ff       	sbrs	r25, 5
+ 2a0:	fc cf       	rjmp	.-8      	; 0x29a <UART_Transmit>
 	UDR0 = data;
- 2ac:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
- 2b0:	08 95       	ret
+ 2a2:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+ 2a6:	08 95       	ret
 
-Disassembly of section .text.GetValues:
+Disassembly of section .text.Read_DHT11:
 
-000000c2 <GetValues>:
+000000c2 <Read_DHT11>:
+	while ( !(UCSR0A & (1<<RXC0)) ); /* Wait for data to be received */
+	return UDR0;
 }
 
-int8_t GetValues(int8_t *temperature, int8_t *humidity)
+int8_t Read_DHT11()
 {
-  c2:	1f 93       	push	r17
-  c4:	cf 93       	push	r28
-  c6:	df 93       	push	r29
-  c8:	00 d0       	rcall	.+0      	; 0xca <GetValues+0x8>
-  ca:	00 d0       	rcall	.+0      	; 0xcc <GetValues+0xa>
-  cc:	1f 92       	push	r1
-  ce:	cd b7       	in	r28, 0x3d	; 61
-  d0:	de b7       	in	r29, 0x3e	; 62
-  d2:	fc 01       	movw	r30, r24
+  c2:	cf 93       	push	r28
+  c4:	df 93       	push	r29
+  c6:	00 d0       	rcall	.+0      	; 0xc8 <Read_DHT11+0x6>
+  c8:	00 d0       	rcall	.+0      	; 0xca <Read_DHT11+0x8>
+  ca:	1f 92       	push	r1
+  cc:	cd b7       	in	r28, 0x3d	; 61
+  ce:	de b7       	in	r29, 0x3e	; 62
 	uint8_t bits[5];
 	uint8_t i,j = 0;
-	
+
 	memset(bits, 0, sizeof(bits));
-  d4:	9e 01       	movw	r18, r28
-  d6:	2f 5f       	subi	r18, 0xFF	; 255
-  d8:	3f 4f       	sbci	r19, 0xFF	; 255
-  da:	85 e0       	ldi	r24, 0x05	; 5
-  dc:	d9 01       	movw	r26, r18
-  de:	1d 92       	st	X+, r1
-  e0:	8a 95       	dec	r24
-  e2:	e9 f7       	brne	.-6      	; 0xde <GetValues+0x1c>
-	//init setup
+  d0:	fe 01       	movw	r30, r28
+  d2:	31 96       	adiw	r30, 0x01	; 1
+  d4:	85 e0       	ldi	r24, 0x05	; 5
+  d6:	df 01       	movw	r26, r30
+  d8:	1d 92       	st	X+, r1
+  da:	8a 95       	dec	r24
+  dc:	e9 f7       	brne	.-6      	; 0xd8 <Read_DHT11+0x16>
+
+	//prepare correct port and pin of DHT sensor
 	DHT_DDR |= (1 << DHT_INPUTPIN); //output
-  e4:	84 b1       	in	r24, 0x04	; 4
-  e6:	81 60       	ori	r24, 0x01	; 1
-  e8:	84 b9       	out	0x04, r24	; 4
+  de:	84 b1       	in	r24, 0x04	; 4
+  e0:	80 62       	ori	r24, 0x20	; 32
+  e2:	84 b9       	out	0x04, r24	; 4
 	DHT_PORT |= (1 << DHT_INPUTPIN); //high
-  ea:	85 b1       	in	r24, 0x05	; 5
-  ec:	81 60       	ori	r24, 0x01	; 1
-  ee:	85 b9       	out	0x05, r24	; 5
+  e4:	85 b1       	in	r24, 0x05	; 5
+  e6:	80 62       	ori	r24, 0x20	; 32
+  e8:	85 b9       	out	0x05, r24	; 5
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
-  f0:	bf ef       	ldi	r27, 0xFF	; 255
-  f2:	21 ee       	ldi	r18, 0xE1	; 225
-  f4:	84 e0       	ldi	r24, 0x04	; 4
-  f6:	b1 50       	subi	r27, 0x01	; 1
-  f8:	20 40       	sbci	r18, 0x00	; 0
-  fa:	80 40       	sbci	r24, 0x00	; 0
-  fc:	e1 f7       	brne	.-8      	; 0xf6 <GetValues+0x34>
-  fe:	00 c0       	rjmp	.+0      	; 0x100 <GetValues+0x3e>
- 100:	00 00       	nop
+  ea:	bf ef       	ldi	r27, 0xFF	; 255
+  ec:	21 ee       	ldi	r18, 0xE1	; 225
+  ee:	84 e0       	ldi	r24, 0x04	; 4
+  f0:	b1 50       	subi	r27, 0x01	; 1
+  f2:	20 40       	sbci	r18, 0x00	; 0
+  f4:	80 40       	sbci	r24, 0x00	; 0
+  f6:	e1 f7       	brne	.-8      	; 0xf0 <Read_DHT11+0x2e>
+  f8:	00 c0       	rjmp	.+0      	; 0xfa <Read_DHT11+0x38>
+  fa:	00 00       	nop
 	_delay_ms(100);
-	
+
 	//begin send request
 	DHT_PORT &= ~(1 << DHT_INPUTPIN); //low
- 102:	85 b1       	in	r24, 0x05	; 5
- 104:	8e 7f       	andi	r24, 0xFE	; 254
- 106:	85 b9       	out	0x05, r24	; 5
- 108:	9f ef       	ldi	r25, 0xFF	; 255
- 10a:	a0 ee       	ldi	r26, 0xE0	; 224
- 10c:	b0 e0       	ldi	r27, 0x00	; 0
- 10e:	91 50       	subi	r25, 0x01	; 1
- 110:	a0 40       	sbci	r26, 0x00	; 0
- 112:	b0 40       	sbci	r27, 0x00	; 0
- 114:	e1 f7       	brne	.-8      	; 0x10e <GetValues+0x4c>
- 116:	00 c0       	rjmp	.+0      	; 0x118 <GetValues+0x56>
- 118:	00 00       	nop
+  fc:	85 b1       	in	r24, 0x05	; 5
+  fe:	8f 7d       	andi	r24, 0xDF	; 223
+ 100:	85 b9       	out	0x05, r24	; 5
+ 102:	9f ef       	ldi	r25, 0xFF	; 255
+ 104:	a0 ee       	ldi	r26, 0xE0	; 224
+ 106:	b0 e0       	ldi	r27, 0x00	; 0
+ 108:	91 50       	subi	r25, 0x01	; 1
+ 10a:	a0 40       	sbci	r26, 0x00	; 0
+ 10c:	b0 40       	sbci	r27, 0x00	; 0
+ 10e:	e1 f7       	brne	.-8      	; 0x108 <Read_DHT11+0x46>
+ 110:	00 c0       	rjmp	.+0      	; 0x112 <Read_DHT11+0x50>
+ 112:	00 00       	nop
 	_delay_ms(18);
 	DHT_PORT |= (1 << DHT_INPUTPIN); //high
- 11a:	85 b1       	in	r24, 0x05	; 5
- 11c:	81 60       	ori	r24, 0x01	; 1
- 11e:	85 b9       	out	0x05, r24	; 5
+ 114:	85 b1       	in	r24, 0x05	; 5
+ 116:	80 62       	ori	r24, 0x20	; 32
+ 118:	85 b9       	out	0x05, r24	; 5
 	DHT_DDR &= ~(1 << DHT_INPUTPIN); //input
- 120:	94 b1       	in	r25, 0x04	; 4
- 122:	9e 7f       	andi	r25, 0xFE	; 254
- 124:	94 b9       	out	0x04, r25	; 4
+ 11a:	84 b1       	in	r24, 0x04	; 4
+ 11c:	8f 7d       	andi	r24, 0xDF	; 223
+ 11e:	84 b9       	out	0x04, r24	; 4
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 126:	25 ed       	ldi	r18, 0xD5	; 213
- 128:	2a 95       	dec	r18
- 12a:	f1 f7       	brne	.-4      	; 0x128 <GetValues+0x66>
- 12c:	00 00       	nop
-	_delay_us(40);
-	
-	//begin send request
-	DHT_PORT &= ~(1 << DHT_INPUTPIN); //low
- 12e:	95 b1       	in	r25, 0x05	; 5
- 130:	9e 7f       	andi	r25, 0xFE	; 254
- 132:	95 b9       	out	0x05, r25	; 5
-	#else
-		//round up by default
-		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
-	#endif
-
-	__builtin_avr_delay_cycles(__ticks_dc);
- 134:	8f ef       	ldi	r24, 0xFF	; 255
- 136:	90 ee       	ldi	r25, 0xE0	; 224
- 138:	a0 e0       	ldi	r26, 0x00	; 0
- 13a:	81 50       	subi	r24, 0x01	; 1
- 13c:	90 40       	sbci	r25, 0x00	; 0
- 13e:	a0 40       	sbci	r26, 0x00	; 0
- 140:	e1 f7       	brne	.-8      	; 0x13a <GetValues+0x78>
- 142:	00 c0       	rjmp	.+0      	; 0x144 <GetValues+0x82>
- 144:	00 00       	nop
-	#if DHT_TYPE == DHT_DHT11
-	_delay_ms(18);
-	#elif DHT_TYPE == DHT_DHT22
-	_delay_us(500);
-	#endif
-	DHT_PORT |= (1 << DHT_INPUTPIN); //high
- 146:	95 b1       	in	r25, 0x05	; 5
- 148:	91 60       	ori	r25, 0x01	; 1
- 14a:	95 b9       	out	0x05, r25	; 5
-	DHT_DDR &= ~(1 << DHT_INPUTPIN); //input
- 14c:	94 b1       	in	r25, 0x04	; 4
- 14e:	9e 7f       	andi	r25, 0xFE	; 254
- 150:	94 b9       	out	0x04, r25	; 4
-	#else
-		//round up by default
-		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
-	#endif
-
-	__builtin_avr_delay_cycles(__ticks_dc);
- 152:	b5 ed       	ldi	r27, 0xD5	; 213
- 154:	ba 95       	dec	r27
- 156:	f1 f7       	brne	.-4      	; 0x154 <GetValues+0x92>
- 158:	00 00       	nop
+ 120:	25 ed       	ldi	r18, 0xD5	; 213
+ 122:	2a 95       	dec	r18
+ 124:	f1 f7       	brne	.-4      	; 0x122 <Read_DHT11+0x60>
+ 126:	00 00       	nop
 	_delay_us(40);
 
 	//check first start condition
 	if((DHT_PIN & (1<<DHT_INPUTPIN))) {
- 15a:	18 99       	sbic	0x03, 0	; 3
- 15c:	65 c0       	rjmp	.+202    	; 0x228 <GetValues+0x166>
- 15e:	8f e3       	ldi	r24, 0x3F	; 63
- 160:	91 e0       	ldi	r25, 0x01	; 1
- 162:	01 97       	sbiw	r24, 0x01	; 1
- 164:	f1 f7       	brne	.-4      	; 0x162 <GetValues+0xa0>
- 166:	00 c0       	rjmp	.+0      	; 0x168 <GetValues+0xa6>
- 168:	00 00       	nop
+ 128:	1d 99       	sbic	0x03, 5	; 3
+ 12a:	67 c0       	rjmp	.+206    	; 0x1fa <Read_DHT11+0x138>
+ 12c:	8f e3       	ldi	r24, 0x3F	; 63
+ 12e:	91 e0       	ldi	r25, 0x01	; 1
+ 130:	01 97       	sbiw	r24, 0x01	; 1
+ 132:	f1 f7       	brne	.-4      	; 0x130 <Read_DHT11+0x6e>
+ 134:	00 c0       	rjmp	.+0      	; 0x136 <Read_DHT11+0x74>
+ 136:	00 00       	nop
 		return -1;
 	}
 	_delay_us(80);
 	
 	//check second start condition
 	if(!(DHT_PIN & (1<<DHT_INPUTPIN))) {
- 16a:	18 9b       	sbis	0x03, 0	; 3
- 16c:	5f c0       	rjmp	.+190    	; 0x22c <GetValues+0x16a>
- 16e:	af e3       	ldi	r26, 0x3F	; 63
- 170:	b1 e0       	ldi	r27, 0x01	; 1
- 172:	11 97       	sbiw	r26, 0x01	; 1
- 174:	f1 f7       	brne	.-4      	; 0x172 <GetValues+0xb0>
- 176:	00 c0       	rjmp	.+0      	; 0x178 <GetValues+0xb6>
- 178:	00 00       	nop
+ 138:	1d 9b       	sbis	0x03, 5	; 3
+ 13a:	61 c0       	rjmp	.+194    	; 0x1fe <Read_DHT11+0x13c>
+ 13c:	af e3       	ldi	r26, 0x3F	; 63
+ 13e:	b1 e0       	ldi	r27, 0x01	; 1
+ 140:	11 97       	sbiw	r26, 0x01	; 1
+ 142:	f1 f7       	brne	.-4      	; 0x140 <Read_DHT11+0x7e>
+ 144:	00 c0       	rjmp	.+0      	; 0x146 <Read_DHT11+0x84>
+ 146:	00 00       	nop
 	}
 	_delay_us(80);
 
 	//read-in data
 	uint16_t timeoutcounter = 0;
 	for (j=0; j<5; j++) { //for each byte (5 total)
- 17a:	10 e0       	ldi	r17, 0x00	; 0
- 17c:	34 c0       	rjmp	.+104    	; 0x1e6 <GetValues+0x124>
+ 148:	60 e0       	ldi	r22, 0x00	; 0
+ 14a:	31 c0       	rjmp	.+98     	; 0x1ae <Read_DHT11+0xec>
 		uint8_t result = 0;
 		for(i=0; i<8; i++) {//for each bit in each byte (8 total)
 			timeoutcounter = 0;
 			while(!(DHT_PIN & (1<<DHT_INPUTPIN))) { //wait for an high input (non blocking)
 				timeoutcounter++;
- 17e:	2f 5f       	subi	r18, 0xFF	; 255
- 180:	3f 4f       	sbci	r19, 0xFF	; 255
+ 14c:	01 96       	adiw	r24, 0x01	; 1
 				if(timeoutcounter > DHT_TIMEOUT) {
- 182:	29 3c       	cpi	r18, 0xC9	; 201
- 184:	31 05       	cpc	r19, r1
- 186:	18 f0       	brcs	.+6      	; 0x18e <GetValues+0xcc>
- 188:	53 c0       	rjmp	.+166    	; 0x230 <GetValues+0x16e>
- 18a:	20 e0       	ldi	r18, 0x00	; 0
- 18c:	30 e0       	ldi	r19, 0x00	; 0
+ 14e:	89 3c       	cpi	r24, 0xC9	; 201
+ 150:	91 05       	cpc	r25, r1
+ 152:	18 f0       	brcs	.+6      	; 0x15a <Read_DHT11+0x98>
+ 154:	56 c0       	rjmp	.+172    	; 0x202 <Read_DHT11+0x140>
+ 156:	80 e0       	ldi	r24, 0x00	; 0
+ 158:	90 e0       	ldi	r25, 0x00	; 0
 	uint16_t timeoutcounter = 0;
 	for (j=0; j<5; j++) { //for each byte (5 total)
 		uint8_t result = 0;
 		for(i=0; i<8; i++) {//for each bit in each byte (8 total)
 			timeoutcounter = 0;
 			while(!(DHT_PIN & (1<<DHT_INPUTPIN))) { //wait for an high input (non blocking)
- 18e:	18 9b       	sbis	0x03, 0	; 3
- 190:	f6 cf       	rjmp	.-20     	; 0x17e <GetValues+0xbc>
- 192:	b0 ea       	ldi	r27, 0xA0	; 160
- 194:	ba 95       	dec	r27
- 196:	f1 f7       	brne	.-4      	; 0x194 <GetValues+0xd2>
+ 15a:	1d 9b       	sbis	0x03, 5	; 3
+ 15c:	f7 cf       	rjmp	.-18     	; 0x14c <Read_DHT11+0x8a>
+ 15e:	b0 ea       	ldi	r27, 0xA0	; 160
+ 160:	ba 95       	dec	r27
+ 162:	f1 f7       	brne	.-4      	; 0x160 <Read_DHT11+0x9e>
 				if(timeoutcounter > DHT_TIMEOUT) {
 					return -1;
 				}
 			}
 			_delay_us(30);
 			if(DHT_PIN & (1<<DHT_INPUTPIN))
- 198:	18 9b       	sbis	0x03, 0	; 3
- 19a:	0c c0       	rjmp	.+24     	; 0x1b4 <GetValues+0xf2>
+ 164:	1d 9b       	sbis	0x03, 5	; 3
+ 166:	0c c0       	rjmp	.+24     	; 0x180 <Read_DHT11+0xbe>
 			result |= (1<<(7-i));
- 19c:	47 e0       	ldi	r20, 0x07	; 7
- 19e:	50 e0       	ldi	r21, 0x00	; 0
- 1a0:	49 1b       	sub	r20, r25
- 1a2:	51 09       	sbc	r21, r1
- 1a4:	21 e0       	ldi	r18, 0x01	; 1
- 1a6:	30 e0       	ldi	r19, 0x00	; 0
- 1a8:	02 c0       	rjmp	.+4      	; 0x1ae <GetValues+0xec>
- 1aa:	22 0f       	add	r18, r18
- 1ac:	33 1f       	adc	r19, r19
- 1ae:	4a 95       	dec	r20
- 1b0:	e2 f7       	brpl	.-8      	; 0x1aa <GetValues+0xe8>
- 1b2:	82 2b       	or	r24, r18
+ 168:	47 e0       	ldi	r20, 0x07	; 7
+ 16a:	50 e0       	ldi	r21, 0x00	; 0
+ 16c:	42 1b       	sub	r20, r18
+ 16e:	51 09       	sbc	r21, r1
+ 170:	81 e0       	ldi	r24, 0x01	; 1
+ 172:	90 e0       	ldi	r25, 0x00	; 0
+ 174:	02 c0       	rjmp	.+4      	; 0x17a <Read_DHT11+0xb8>
+ 176:	88 0f       	add	r24, r24
+ 178:	99 1f       	adc	r25, r25
+ 17a:	4a 95       	dec	r20
+ 17c:	e2 f7       	brpl	.-8      	; 0x176 <Read_DHT11+0xb4>
+ 17e:	38 2b       	or	r19, r24
 			timeoutcounter = 0;
- 1b4:	20 e0       	ldi	r18, 0x00	; 0
- 1b6:	30 e0       	ldi	r19, 0x00	; 0
+ 180:	80 e0       	ldi	r24, 0x00	; 0
+ 182:	90 e0       	ldi	r25, 0x00	; 0
 			while(DHT_PIN & (1<<DHT_INPUTPIN)) {
- 1b8:	05 c0       	rjmp	.+10     	; 0x1c4 <GetValues+0x102>
+ 184:	04 c0       	rjmp	.+8      	; 0x18e <Read_DHT11+0xcc>
 				timeoutcounter++;
- 1ba:	2f 5f       	subi	r18, 0xFF	; 255
- 1bc:	3f 4f       	sbci	r19, 0xFF	; 255
+ 186:	01 96       	adiw	r24, 0x01	; 1
 				if(timeoutcounter > DHT_TIMEOUT) {
- 1be:	29 3c       	cpi	r18, 0xC9	; 201
- 1c0:	31 05       	cpc	r19, r1
- 1c2:	c0 f5       	brcc	.+112    	; 0x234 <GetValues+0x172>
+ 188:	89 3c       	cpi	r24, 0xC9	; 201
+ 18a:	91 05       	cpc	r25, r1
+ 18c:	e0 f5       	brcc	.+120    	; 0x206 <Read_DHT11+0x144>
 			}
 			_delay_us(30);
 			if(DHT_PIN & (1<<DHT_INPUTPIN))
 			result |= (1<<(7-i));
 			timeoutcounter = 0;
 			while(DHT_PIN & (1<<DHT_INPUTPIN)) {
- 1c4:	18 99       	sbic	0x03, 0	; 3
- 1c6:	f9 cf       	rjmp	.-14     	; 0x1ba <GetValues+0xf8>
+ 18e:	1d 99       	sbic	0x03, 5	; 3
+ 190:	fa cf       	rjmp	.-12     	; 0x186 <Read_DHT11+0xc4>
 
 	//read-in data
 	uint16_t timeoutcounter = 0;
 	for (j=0; j<5; j++) { //for each byte (5 total)
 		uint8_t result = 0;
 		for(i=0; i<8; i++) {//for each bit in each byte (8 total)
- 1c8:	9f 5f       	subi	r25, 0xFF	; 255
- 1ca:	02 c0       	rjmp	.+4      	; 0x1d0 <GetValues+0x10e>
- 1cc:	80 e0       	ldi	r24, 0x00	; 0
- 1ce:	90 e0       	ldi	r25, 0x00	; 0
- 1d0:	98 30       	cpi	r25, 0x08	; 8
- 1d2:	d8 f2       	brcs	.-74     	; 0x18a <GetValues+0xc8>
+ 192:	2f 5f       	subi	r18, 0xFF	; 255
+ 194:	02 c0       	rjmp	.+4      	; 0x19a <Read_DHT11+0xd8>
+ 196:	30 e0       	ldi	r19, 0x00	; 0
+ 198:	20 e0       	ldi	r18, 0x00	; 0
+ 19a:	28 30       	cpi	r18, 0x08	; 8
+ 19c:	e0 f2       	brcs	.-72     	; 0x156 <Read_DHT11+0x94>
 				if(timeoutcounter > DHT_TIMEOUT) {
 					return -1;
 				}
 			}
 		}
 		bits[j] = result;
- 1d4:	21 e0       	ldi	r18, 0x01	; 1
- 1d6:	30 e0       	ldi	r19, 0x00	; 0
- 1d8:	2c 0f       	add	r18, r28
- 1da:	3d 1f       	adc	r19, r29
- 1dc:	21 0f       	add	r18, r17
- 1de:	31 1d       	adc	r19, r1
- 1e0:	d9 01       	movw	r26, r18
- 1e2:	8c 93       	st	X, r24
+ 19e:	e1 e0       	ldi	r30, 0x01	; 1
+ 1a0:	f0 e0       	ldi	r31, 0x00	; 0
+ 1a2:	ec 0f       	add	r30, r28
+ 1a4:	fd 1f       	adc	r31, r29
+ 1a6:	e6 0f       	add	r30, r22
+ 1a8:	f1 1d       	adc	r31, r1
+ 1aa:	30 83       	st	Z, r19
 	}
 	_delay_us(80);
 
 	//read-in data
 	uint16_t timeoutcounter = 0;
 	for (j=0; j<5; j++) { //for each byte (5 total)
- 1e4:	1f 5f       	subi	r17, 0xFF	; 255
- 1e6:	15 30       	cpi	r17, 0x05	; 5
- 1e8:	88 f3       	brcs	.-30     	; 0x1cc <GetValues+0x10a>
+ 1ac:	6f 5f       	subi	r22, 0xFF	; 255
+ 1ae:	65 30       	cpi	r22, 0x05	; 5
+ 1b0:	90 f3       	brcs	.-28     	; 0x196 <Read_DHT11+0xd4>
 		}
 		bits[j] = result;
 	}
 
-		//reset port
-		DHT_DDR |= (1<<DHT_INPUTPIN); //output
- 1ea:	84 b1       	in	r24, 0x04	; 4
- 1ec:	81 60       	ori	r24, 0x01	; 1
- 1ee:	84 b9       	out	0x04, r24	; 4
-		DHT_PORT |= (1<<DHT_INPUTPIN); //low
- 1f0:	85 b1       	in	r24, 0x05	; 5
- 1f2:	81 60       	ori	r24, 0x01	; 1
- 1f4:	85 b9       	out	0x05, r24	; 5
+	//reset port
+	DHT_DDR |= (1<<DHT_INPUTPIN); //output
+ 1b2:	84 b1       	in	r24, 0x04	; 4
+ 1b4:	80 62       	ori	r24, 0x20	; 32
+ 1b6:	84 b9       	out	0x04, r24	; 4
+	DHT_PORT |= (1<<DHT_INPUTPIN); //low
+ 1b8:	85 b1       	in	r24, 0x05	; 5
+ 1ba:	80 62       	ori	r24, 0x20	; 32
+ 1bc:	85 b9       	out	0x05, r24	; 5
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 1f6:	bf ef       	ldi	r27, 0xFF	; 255
- 1f8:	21 ee       	ldi	r18, 0xE1	; 225
- 1fa:	84 e0       	ldi	r24, 0x04	; 4
- 1fc:	b1 50       	subi	r27, 0x01	; 1
- 1fe:	20 40       	sbci	r18, 0x00	; 0
- 200:	80 40       	sbci	r24, 0x00	; 0
- 202:	e1 f7       	brne	.-8      	; 0x1fc <GetValues+0x13a>
- 204:	00 c0       	rjmp	.+0      	; 0x206 <GetValues+0x144>
- 206:	00 00       	nop
-		_delay_ms(100);
-		
-			//compare checksum
-			if ((uint8_t)(bits[0] + bits[1] + bits[2] + bits[3]) == bits[4]) 
- 208:	89 81       	ldd	r24, Y+1	; 0x01
- 20a:	9a 81       	ldd	r25, Y+2	; 0x02
- 20c:	3b 81       	ldd	r19, Y+3	; 0x03
- 20e:	2c 81       	ldd	r18, Y+4	; 0x04
- 210:	89 0f       	add	r24, r25
- 212:	83 0f       	add	r24, r19
- 214:	82 0f       	add	r24, r18
- 216:	9d 81       	ldd	r25, Y+5	; 0x05
- 218:	89 13       	cpse	r24, r25
- 21a:	0e c0       	rjmp	.+28     	; 0x238 <GetValues+0x176>
-			{
-				*temperature = bits[2];
- 21c:	30 83       	st	Z, r19
-				*humidity = bits[0];
- 21e:	89 81       	ldd	r24, Y+1	; 0x01
- 220:	db 01       	movw	r26, r22
- 222:	8c 93       	st	X, r24
-				return 0;
- 224:	80 e0       	ldi	r24, 0x00	; 0
- 226:	09 c0       	rjmp	.+18     	; 0x23a <GetValues+0x178>
+ 1be:	2f ef       	ldi	r18, 0xFF	; 255
+ 1c0:	81 ee       	ldi	r24, 0xE1	; 225
+ 1c2:	94 e0       	ldi	r25, 0x04	; 4
+ 1c4:	21 50       	subi	r18, 0x01	; 1
+ 1c6:	80 40       	sbci	r24, 0x00	; 0
+ 1c8:	90 40       	sbci	r25, 0x00	; 0
+ 1ca:	e1 f7       	brne	.-8      	; 0x1c4 <Read_DHT11+0x102>
+ 1cc:	00 c0       	rjmp	.+0      	; 0x1ce <Read_DHT11+0x10c>
+ 1ce:	00 00       	nop
+	_delay_ms(100);
+
+	//compare checksum
+	if ((uint8_t)(bits[0] + bits[1] + bits[2] + bits[3]) == bits[4]) {
+ 1d0:	29 81       	ldd	r18, Y+1	; 0x01
+ 1d2:	9a 81       	ldd	r25, Y+2	; 0x02
+ 1d4:	4b 81       	ldd	r20, Y+3	; 0x03
+ 1d6:	3c 81       	ldd	r19, Y+4	; 0x04
+ 1d8:	82 2f       	mov	r24, r18
+ 1da:	89 0f       	add	r24, r25
+ 1dc:	84 0f       	add	r24, r20
+ 1de:	83 0f       	add	r24, r19
+ 1e0:	5d 81       	ldd	r21, Y+5	; 0x05
+ 1e2:	85 13       	cpse	r24, r21
+ 1e4:	12 c0       	rjmp	.+36     	; 0x20a <Read_DHT11+0x148>
+		//return temperature and humidity
+		temperature_high = bits[2];
+ 1e6:	40 93 01 01 	sts	0x0101, r20	; 0x800101 <temperature_high>
+		temperature_low=bits[3];
+ 1ea:	30 93 00 01 	sts	0x0100, r19	; 0x800100 <_edata>
+		humidity_high = bits[0];
+ 1ee:	20 93 03 01 	sts	0x0103, r18	; 0x800103 <humidity_high>
+		humidity_low=bits[1];
+ 1f2:	90 93 02 01 	sts	0x0102, r25	; 0x800102 <humidity_low>
+		return 0;
+ 1f6:	80 e0       	ldi	r24, 0x00	; 0
+ 1f8:	09 c0       	rjmp	.+18     	; 0x20c <Read_DHT11+0x14a>
 	DHT_DDR &= ~(1 << DHT_INPUTPIN); //input
 	_delay_us(40);
 
 	//check first start condition
 	if((DHT_PIN & (1<<DHT_INPUTPIN))) {
 		return -1;
- 228:	8f ef       	ldi	r24, 0xFF	; 255
- 22a:	07 c0       	rjmp	.+14     	; 0x23a <GetValues+0x178>
+ 1fa:	8f ef       	ldi	r24, 0xFF	; 255
+ 1fc:	07 c0       	rjmp	.+14     	; 0x20c <Read_DHT11+0x14a>
 	}
 	_delay_us(80);
 	
 	//check second start condition
 	if(!(DHT_PIN & (1<<DHT_INPUTPIN))) {
 		return -1;
- 22c:	8f ef       	ldi	r24, 0xFF	; 255
- 22e:	05 c0       	rjmp	.+10     	; 0x23a <GetValues+0x178>
+ 1fe:	8f ef       	ldi	r24, 0xFF	; 255
+ 200:	05 c0       	rjmp	.+10     	; 0x20c <Read_DHT11+0x14a>
 		for(i=0; i<8; i++) {//for each bit in each byte (8 total)
 			timeoutcounter = 0;
 			while(!(DHT_PIN & (1<<DHT_INPUTPIN))) { //wait for an high input (non blocking)
 				timeoutcounter++;
 				if(timeoutcounter > DHT_TIMEOUT) {
 					return -1;
- 230:	8f ef       	ldi	r24, 0xFF	; 255
- 232:	03 c0       	rjmp	.+6      	; 0x23a <GetValues+0x178>
+ 202:	8f ef       	ldi	r24, 0xFF	; 255
+ 204:	03 c0       	rjmp	.+6      	; 0x20c <Read_DHT11+0x14a>
 			result |= (1<<(7-i));
 			timeoutcounter = 0;
 			while(DHT_PIN & (1<<DHT_INPUTPIN)) {
 				timeoutcounter++;
 				if(timeoutcounter > DHT_TIMEOUT) {
 					return -1;
- 234:	8f ef       	ldi	r24, 0xFF	; 255
- 236:	01 c0       	rjmp	.+2      	; 0x23a <GetValues+0x178>
-				*temperature = bits[2];
-				*humidity = bits[0];
-				return 0;
-			}
+ 206:	8f ef       	ldi	r24, 0xFF	; 255
+ 208:	01 c0       	rjmp	.+2      	; 0x20c <Read_DHT11+0x14a>
+		humidity_high = bits[0];
+		humidity_low=bits[1];
+		return 0;
+	}
 
-			return -1;
- 238:	8f ef       	ldi	r24, 0xFF	; 255
+	return -1;
+ 20a:	8f ef       	ldi	r24, 0xFF	; 255
 	
 }
- 23a:	0f 90       	pop	r0
- 23c:	0f 90       	pop	r0
- 23e:	0f 90       	pop	r0
- 240:	0f 90       	pop	r0
- 242:	0f 90       	pop	r0
- 244:	df 91       	pop	r29
- 246:	cf 91       	pop	r28
- 248:	1f 91       	pop	r17
- 24a:	08 95       	ret
+ 20c:	0f 90       	pop	r0
+ 20e:	0f 90       	pop	r0
+ 210:	0f 90       	pop	r0
+ 212:	0f 90       	pop	r0
+ 214:	0f 90       	pop	r0
+ 216:	df 91       	pop	r29
+ 218:	cf 91       	pop	r28
+ 21a:	08 95       	ret
 
 Disassembly of section .text.main:
 
-0000024c <main>:
+0000021c <main>:
 
 
 
 int main(void)
 { 
 	SetupUART();
- 24c:	0e 94 46 01 	call	0x28c	; 0x28c <SetupUART>
+ 21c:	0e 94 41 01 	call	0x282	; 0x282 <SetupUART>
     while(1) 
     {
-		if (GetValues(&temperature_int, &humidity_int) != -1) 
- 250:	60 e0       	ldi	r22, 0x00	; 0
- 252:	71 e0       	ldi	r23, 0x01	; 1
- 254:	81 e0       	ldi	r24, 0x01	; 1
- 256:	91 e0       	ldi	r25, 0x01	; 1
- 258:	0e 94 61 00 	call	0xc2	; 0xc2 <__data_load_end>
- 25c:	8f 3f       	cpi	r24, 0xFF	; 255
- 25e:	49 f0       	breq	.+18     	; 0x272 <main+0x26>
-		{
-			USART_Transmit(temperature_int);
- 260:	80 91 01 01 	lds	r24, 0x0101	; 0x800101 <temperature_int>
- 264:	0e 94 52 01 	call	0x2a4	; 0x2a4 <USART_Transmit>
-			USART_Transmit(humidity_int);
- 268:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
- 26c:	0e 94 52 01 	call	0x2a4	; 0x2a4 <USART_Transmit>
- 270:	03 c0       	rjmp	.+6      	; 0x278 <main+0x2c>
-		}
-		else
-		{
-			USART_Transmit(0);
- 272:	80 e0       	ldi	r24, 0x00	; 0
- 274:	0e 94 52 01 	call	0x2a4	; 0x2a4 <USART_Transmit>
- 278:	2f ef       	ldi	r18, 0xFF	; 255
- 27a:	83 ed       	ldi	r24, 0xD3	; 211
- 27c:	90 e3       	ldi	r25, 0x30	; 48
- 27e:	21 50       	subi	r18, 0x01	; 1
- 280:	80 40       	sbci	r24, 0x00	; 0
- 282:	90 40       	sbci	r25, 0x00	; 0
- 284:	e1 f7       	brne	.-8      	; 0x27e <main+0x32>
- 286:	00 c0       	rjmp	.+0      	; 0x288 <main+0x3c>
- 288:	00 00       	nop
- 28a:	e2 cf       	rjmp	.-60     	; 0x250 <main+0x4>
+			if(Read_DHT11()!=-1)
+ 220:	0e 94 61 00 	call	0xc2	; 0xc2 <_etext>
+ 224:	8f 3f       	cpi	r24, 0xFF	; 255
+ 226:	b9 f0       	breq	.+46     	; 0x256 <main+0x3a>
+			{
+				UART_Transmit(temperature_high);
+ 228:	80 91 01 01 	lds	r24, 0x0101	; 0x800101 <temperature_high>
+ 22c:	0e 94 4d 01 	call	0x29a	; 0x29a <UART_Transmit>
+				UART_Transmit(temperature_low);
+ 230:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
+ 234:	0e 94 4d 01 	call	0x29a	; 0x29a <UART_Transmit>
+				UART_Transmit(';');
+ 238:	8b e3       	ldi	r24, 0x3B	; 59
+ 23a:	0e 94 4d 01 	call	0x29a	; 0x29a <UART_Transmit>
+				UART_Transmit(humidity_high);
+ 23e:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <humidity_high>
+ 242:	0e 94 4d 01 	call	0x29a	; 0x29a <UART_Transmit>
+				UART_Transmit(humidity_low);
+ 246:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <humidity_low>
+ 24a:	0e 94 4d 01 	call	0x29a	; 0x29a <UART_Transmit>
+				//UART_Transmit(';');
+				//UART_Transmit(humidity);
+				//UART_Transmit('\n');
+				UART_Transmit('\r');
+ 24e:	8d e0       	ldi	r24, 0x0D	; 13
+ 250:	0e 94 4d 01 	call	0x29a	; 0x29a <UART_Transmit>
+ 254:	0c c0       	rjmp	.+24     	; 0x26e <main+0x52>
+			}
+			else
+			{
+				UART_Transmit('E');
+ 256:	85 e4       	ldi	r24, 0x45	; 69
+ 258:	0e 94 4d 01 	call	0x29a	; 0x29a <UART_Transmit>
+				UART_Transmit('8');
+ 25c:	88 e3       	ldi	r24, 0x38	; 56
+ 25e:	0e 94 4d 01 	call	0x29a	; 0x29a <UART_Transmit>
+				UART_Transmit('\n');
+ 262:	8a e0       	ldi	r24, 0x0A	; 10
+ 264:	0e 94 4d 01 	call	0x29a	; 0x29a <UART_Transmit>
+				UART_Transmit('\r');			
+ 268:	8d e0       	ldi	r24, 0x0D	; 13
+ 26a:	0e 94 4d 01 	call	0x29a	; 0x29a <UART_Transmit>
+ 26e:	2f ef       	ldi	r18, 0xFF	; 255
+ 270:	87 ea       	ldi	r24, 0xA7	; 167
+ 272:	91 e6       	ldi	r25, 0x61	; 97
+ 274:	21 50       	subi	r18, 0x01	; 1
+ 276:	80 40       	sbci	r24, 0x00	; 0
+ 278:	90 40       	sbci	r25, 0x00	; 0
+ 27a:	e1 f7       	brne	.-8      	; 0x274 <main+0x58>
+ 27c:	00 c0       	rjmp	.+0      	; 0x27e <main+0x62>
+ 27e:	00 00       	nop
+ 280:	cf cf       	rjmp	.-98     	; 0x220 <main+0x4>

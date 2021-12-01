@@ -4,7 +4,7 @@
  * Created: 11/19/2021 5:14:53 PM
  *  Author: Christian Grünewald
  */
-//define microcontroller clock speed
+//define microcontroller clock speed for UART and delay:
 #define F_CPU 16000000UL 
 
 #define USART_BAUDRATE 9600 // Desired Baud Rate
@@ -29,22 +29,29 @@
 
 
 //Port where DHT sensor is connected
-#define DHT_DDR DDRB
+//DHT 11 is connected to PB5, Port B, Pin 0
+#define DHT_DDR DDRB 
 #define DHT_PORT PORTB
 #define DHT_PIN PINB
-#define DHT_INPUTPIN 0
+#define DHT_INPUTPIN 5
 //timeout retries
 #define DHT_TIMEOUT 200
 
+#define DHT_Is_LOW
+#define  DHT_Is_HIGH
+
 
 #include <util/delay.h>
-//#include <xc.h>
+#include <xc.h>
 #include <avr/io.h>
 #include <util/delay.h>
 #include <string.h>
 
-int8_t temperature_int = 0;
-int8_t humidity_int = 0;
+int8_t humidity_high=0;
+int8_t humidity_low=0;
+int8_t temperature_high=0;
+int8_t temperature_low=0;
+
 
 void SetupUART()
 {
@@ -59,37 +66,33 @@ void SetupUART()
 	UCSR0B = (1<<RXEN0) | (1<<TXEN0);
 }
 
-void USART_Transmit( unsigned char data )
+void UART_Transmit( int8_t data )
 {
 	while (( UCSR0A & (1<<UDRE0)) == 0) {}; // Do nothing until UDR is ready
 	UDR0 = data;
 }
 
-int8_t GetValues(int8_t *temperature, int8_t *humidity)
+unsigned char UART_Read()
+{
+	while ( !(UCSR0A & (1<<RXC0)) ); /* Wait for data to be received */
+	return UDR0;
+}
+
+int8_t Read_DHT11()
 {
 	uint8_t bits[5];
 	uint8_t i,j = 0;
-	
+
 	memset(bits, 0, sizeof(bits));
-	//init setup
+
+	//prepare correct port and pin of DHT sensor
 	DHT_DDR |= (1 << DHT_INPUTPIN); //output
 	DHT_PORT |= (1 << DHT_INPUTPIN); //high
 	_delay_ms(100);
-	
+
 	//begin send request
 	DHT_PORT &= ~(1 << DHT_INPUTPIN); //low
 	_delay_ms(18);
-	DHT_PORT |= (1 << DHT_INPUTPIN); //high
-	DHT_DDR &= ~(1 << DHT_INPUTPIN); //input
-	_delay_us(40);
-	
-	//begin send request
-	DHT_PORT &= ~(1 << DHT_INPUTPIN); //low
-	#if DHT_TYPE == DHT_DHT11
-	_delay_ms(18);
-	#elif DHT_TYPE == DHT_DHT22
-	_delay_us(500);
-	#endif
 	DHT_PORT |= (1 << DHT_INPUTPIN); //high
 	DHT_DDR &= ~(1 << DHT_INPUTPIN); //input
 	_delay_us(40);
@@ -132,20 +135,22 @@ int8_t GetValues(int8_t *temperature, int8_t *humidity)
 		bits[j] = result;
 	}
 
-		//reset port
-		DHT_DDR |= (1<<DHT_INPUTPIN); //output
-		DHT_PORT |= (1<<DHT_INPUTPIN); //low
-		_delay_ms(100);
-		
-			//compare checksum
-			if ((uint8_t)(bits[0] + bits[1] + bits[2] + bits[3]) == bits[4]) 
-			{
-				*temperature = bits[2];
-				*humidity = bits[0];
-				return 0;
-			}
+	//reset port
+	DHT_DDR |= (1<<DHT_INPUTPIN); //output
+	DHT_PORT |= (1<<DHT_INPUTPIN); //low
+	_delay_ms(100);
 
-			return -1;
+	//compare checksum
+	if ((uint8_t)(bits[0] + bits[1] + bits[2] + bits[3]) == bits[4]) {
+		//return temperature and humidity
+		temperature_high = bits[2];
+		temperature_low=bits[3];
+		humidity_high = bits[0];
+		humidity_low=bits[1];
+		return 0;
+	}
+
+	return -1;
 	
 }
 
@@ -156,15 +161,27 @@ int main(void)
 	SetupUART();
     while(1) 
     {
-		if (GetValues(&temperature_int, &humidity_int) != -1) 
-		{
-			USART_Transmit(temperature_int);
-			USART_Transmit(humidity_int);
-		}
-		else
-		{
-			USART_Transmit(0);
-		}
-		_delay_ms(1000);
+			if(Read_DHT11()!=-1)
+			{
+				UART_Transmit(temperature_high);
+				UART_Transmit(temperature_low);
+				UART_Transmit(';');
+				UART_Transmit(humidity_high);
+				UART_Transmit(humidity_low);
+				//UART_Transmit(';');
+				//UART_Transmit(humidity);
+				//UART_Transmit('\n');
+				UART_Transmit('\r');
+			}
+			else
+			{
+				UART_Transmit('E');
+				UART_Transmit('8');
+				UART_Transmit('\n');
+				UART_Transmit('\r');			
+			}
+			
+			_delay_ms(2000);
+		
     }
 }
